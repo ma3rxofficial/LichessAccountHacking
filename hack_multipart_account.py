@@ -63,6 +63,10 @@ def start(passwords):
     #   Здесь писать список паролей, которые будут перебиратся
     #   Самые популярные пароли: username (такой же как и логин), '123456', '123456789' и getNumericPart(username) (цифры с логина)
     #   Писать сразу больше двух паролей не рекомендуется
+    
+        # tracker bypass
+        tracker_info = tracker.get_name(username)
+        tracker.get_birthday(username)
 
         s = username[len(username)-4] + username[len(username)-3] + username[len(username)-2] + username[len(username)-1]
         if (not s.isnumeric()): continue
@@ -72,6 +76,7 @@ def start(passwords):
         #passwords = []
         if (len(k) > 2): passwords.append(k + str(n))
         if (len(getNumericPart(username)) == 8): passwords.append(getNumericPart(username))
+        if (len(usernam)) == 8): passwords.append(username) 
 
         for password in passwords:
 

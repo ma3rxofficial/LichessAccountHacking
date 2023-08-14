@@ -4,6 +4,8 @@ import check
 import hack_multipart_account
 import team_hack
 import wordlist
+import password_check
+
 from config import *
 
 
@@ -24,7 +26,7 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.4
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.3
                                                                                     
          {blue}                                                   Functions by ma3rx fish224 kv4nt chleb.
                                                                 With you after first SVC vs MARCO war!{yellow}
@@ -32,7 +34,8 @@ def funcs_print():
         [2] Кик участников из команды
         [3] Захватывающий портал(cookies)
         [4] Генератор паролей
-        [5] Выход
+        [5] Проверка паролем
+        [6] Выход
         
     """
 
@@ -92,6 +95,18 @@ def start():
             start()
 
         elif func == '5':
+            os.system('cls')
+            print(cyanlight + "Проверка участников по паролю")
+            password_check.start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + magenta),
+                  team=input(yellow + "Введите ID клуба: " + magenta))
+
+            print(green + "[+] Готово.")
+            input(magenta + "[?] Продолжить? ")
+            os.system('cls')
+            funcs_print()
+            start()
+
+        elif func == '6':
             os.system('cls')
             print("--------------Выход--------------")
             exit()

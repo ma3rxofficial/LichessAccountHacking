@@ -1,7 +1,6 @@
 import berserk
 import requests
 import ndjson
-from config import *
 
 def hack(token, team):
     msg = """
@@ -16,9 +15,13 @@ def hack(token, team):
     r = requests.get('https://lichess.org/api/team/'+team+'/users')
     data = r.json(cls=ndjson.Decoder)
 
-    requests.post('https://lichess.org/team/'+team+'/pm-all', data={'message': msg}, headers=heads).json()
+    print(data)
+
+    session.post('https://lichess.org/team/'+team+'/pm-all', data={'message': msg}, headers=heads).json()
 
     for i in data:
         user = i['id']
         client.teams.kick_member(team, user)
         print(green + f"[+] {user} кикнут!")
+
+

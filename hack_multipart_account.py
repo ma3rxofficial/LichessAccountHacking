@@ -63,7 +63,7 @@ def start(passwords):
             print(r, username, password)
             k += 1
 
-            with open("hacked_real.txt", "a") as h_list: h_list.write(f"{r}, {username}, {password}")
+            with open("hacked_real.txt", "a") as h_list: h_list.write(f"{r}, {username}, {password} \n")
 
             time.sleep(5)
             if k % 10 == 0:

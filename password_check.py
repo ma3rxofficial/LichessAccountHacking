@@ -26,7 +26,7 @@ def start(password, team):
 
         print(f"{r}, {username}, {password}")
 
-        with open("hacked_checking.txt", "a") as h_list:
+        with open("hacked_checking.txt", "a", encoding="utf-8") as h_list:
             h_list.write(f"{r}, {username}, {password} \n")
 
         time.sleep(5)

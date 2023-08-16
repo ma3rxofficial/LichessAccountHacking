@@ -8,7 +8,6 @@ import tracker, r_e
 
 # Заходим через прокси
 def start(passwords):
-
     # Это функция получения цифр с логина
     def getNumericPart(string):
         res = ''
@@ -63,7 +62,7 @@ def start(passwords):
             print(r, username, password)
             k += 1
 
-            with open("hacked_real.txt", "a") as h_list: h_list.write(f"{r}, {username}, {password} \n")
+            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{r}, {username}, {password}")
 
             time.sleep(5)
             if k % 10 == 0:
@@ -71,7 +70,7 @@ def start(passwords):
 
 
 if __name__ == "__main__":
-    with open("passwords.txt", "r") as passwords:
+    with open("passwords.txt", "r", encoding="utf-8") as passwords:
         start(passwords.readlines())
     print(green + "[+] Готово.")
     input(magenta + "[?] Продолжить? ")

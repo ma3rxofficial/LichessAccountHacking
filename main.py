@@ -26,9 +26,9 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.3
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.4
                                                                                     
-         {blue}                                                   Functions by ma3rx fish224 kv4nt chleb.
+         {blue}                                                   Functions by Ma3rX, Python_UT.
                                                                 With you after first SVC vs MARCO war!{yellow}
         [1] Хак аккаунтов(мултипарт)
         [2] Кик участников из команды
@@ -43,7 +43,6 @@ def funcs_print():
 
 
 def start():
-    if True:
         func = input(magenta + '[?] Выберите функцию: ')
 
         if func == '1':
@@ -110,10 +109,6 @@ def start():
             os.system('cls')
             print("--------------Выход--------------")
             exit()
-
-    # except Exception as exc:
-    #    print(red + '[X] Ошибка:', magenta + str(exc))
-
 
 if __name__ == '__main__':
     funcs_print()

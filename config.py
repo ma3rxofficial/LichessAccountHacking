@@ -2,6 +2,9 @@ import random
 
 from colorama import Fore, Style
 
+import time
+from datetime import datetime
+
 all_col = [Style.BRIGHT + Fore.RED,
            Style.BRIGHT + Fore.CYAN,
            Style.BRIGHT + Fore.LIGHTCYAN_EX,
@@ -23,3 +26,18 @@ cyanlight2 = all_col[4]
 magenta = all_col[5]
 yellow = all_col[6]
 green = all_col[7]
+
+# SOME FUNCS
+
+### TIMESAMP GETTING ###
+def get_ts():
+    timestamp = time.time()
+    # convert to datetime
+    date_time = datetime.fromtimestamp(timestamp)
+
+    # convert timestamp to string in dd-mm-yyyy HH:MM:SS
+
+    str_dt = date_time.strftime("%d-%m-%Y, %H:%M:%S")
+
+    return f"| {str_dt} |"
+

@@ -24,10 +24,10 @@ def start(password, team):
                               headers={"X-Requested-With": "XMLHttpRequest",
                                        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
 
-        print(f"{r}, {username}, {password}")
+        print(f"{get_ts()} {r}, {username}: {password}")
 
         with open("hacked_checking.txt", "a", encoding="utf-8") as h_list:
-            h_list.write(f"{r}, {username}, {password} \n")
+            h_list.write(f"{get_ts()} {r}, {username}: {password}")
 
         time.sleep(5)
 

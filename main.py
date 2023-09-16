@@ -5,6 +5,7 @@ import hack_multipart_account
 import team_hack
 import wordlist
 import password_check
+import team_deanon
 
 from config import *
 
@@ -26,16 +27,17 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.4
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.5
                                                                                     
-         {blue}                                                   Functions by Ma3rX, Python_UT.
+         {blue}                                                   Functions by Ma3rX, Python_UT, Tevajs.
                                                                 With you after first SVC vs MARCO war!{yellow}
         [1] Хак аккаунтов(мултипарт)
         [2] Кик участников из команды
         [3] Захватывающий портал(cookies)
         [4] Генератор паролей
         [5] Проверка паролем
-        [6] Выход
+        [6] Деанон клуба
+        [7] Выход
         
     """
 
@@ -106,6 +108,18 @@ def start():
             start()
 
         elif func == '6':
+            os.system('cls')
+            print(cyanlight + "Получение информации о всех участниках клуба")
+            team_deanon.deanon(team=input(yellow + "Введите ID клуба: " + magenta))
+
+            print(green + "[+] Готово.")
+            input(magenta + "[?] Продолжить? ")
+            os.system('cls')
+            funcs_print()
+            start()
+
+
+        elif func == '7':
             os.system('cls')
             print("--------------Выход--------------")
             exit()

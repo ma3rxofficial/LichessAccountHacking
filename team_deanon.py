@@ -1,9 +1,8 @@
-import berserk
-import requests
 import ndjson
 
 from config import *
 from parser import *
+
 
 def deanon(team):
     r = requests.get('https://lichess.org/api/team/' + team + '/users')
@@ -23,4 +22,3 @@ def deanon(team):
 
 if __name__ == "__main__":
     deanon(team=input(magenta + "[?] ID команды: "))
-

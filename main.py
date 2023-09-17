@@ -1,6 +1,5 @@
 import os
 
-import check
 import hack_multipart_account
 import team_hack
 import wordlist

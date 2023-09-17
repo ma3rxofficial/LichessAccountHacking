@@ -26,12 +26,11 @@ def start(password, team):
 
         print(f"{get_ts()} {r}, {username}: {password}")
 
-
         if str(r) == "<Response [200]>":
-             with open("hacked_checking.txt", "a", encoding="utf-8") as h_list:
-                 h_list.write(f"{get_ts()} {username}: {password} \n")
-     
-             time.sleep(5)
+            with open("hacked_checking.txt", "a", encoding="utf-8") as h_list:
+                h_list.write(f"{get_ts()} {username}: {password} \n")
+
+        time.sleep(5)
 
 
 if __name__ == "__main__":

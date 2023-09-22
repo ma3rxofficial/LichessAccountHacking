@@ -1,13 +1,16 @@
-from itertools import chain, product
+import random
+from config import *
 
+def start(number, length):
+    chars = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    for n in range(int(number)):
+        password =''
+        for i in range(int(length)):
+            password += random.choice(chars)
 
-def bruteforce(charset, maxlength):
-    return (''.join(candidate)
-            for candidate in chain.from_iterable(product(charset, repeat=i)
-                                                 for i in range(4, maxlength + 1)))
+        print(cyanlight +  password)
+        with open("passwords.txt", "a", encoding="utf-8") as passwords:
+            passwords.write(f"{password} \n")
 
-
-def start():
-    return list(bruteforce(
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-        1000)).strip()
+if __name__ == "__main__":
+    start(number=input(magenta + "[?] Количество паролей: "), length=input(magenta + "[?] Длина пароля: "))

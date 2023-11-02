@@ -31,7 +31,7 @@ def start(password, team):
         k += 1
 
         if str(r) == "<Response [200]>":
-            with open("hacked_checking.txt", "a", encoding="utf-8") as h_list:
+            with open(f"hacked_checking/{team}.txt", "a", encoding="utf-8") as h_list:
                 h_list.write(f"{get_ts()} {username}: {password} \n")
 
         time.sleep(5)

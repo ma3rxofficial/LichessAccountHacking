@@ -25,8 +25,8 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.6.1
-                                                                                    
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.6.2
+
          {blue}                                                   Functions by Ma3rX, Python_UT, Tevajs.
                                                                 With you after first SVC vs MARCO war!{yellow}
         [1] Хак аккаунтов(мултипарт)
@@ -36,7 +36,7 @@ def funcs_print():
         [5] Деанон клуба
         [6] Сообщение от автора
         [7] Выход
-        
+
     """
 
     print(menu)
@@ -72,7 +72,8 @@ def start():
         choose_4 = input(
             magenta + "Генерация паролей может вызвать теоретическое снижение производительности вашего компьютера. Хотите продолжить? [y/N]")
         if choose_4 == "y" or choose_4 == "Y":
-            wordlist.start(number=input(magenta + "[?] Количество паролей: "), length=input(magenta + "[?] Длина пароля: "))
+            wordlist.start(number=input(magenta + "[?] Количество паролей: "),
+                           length=input(magenta + "[?] Длина пароля: "))
             print(green + "[+] Готово.")
             input(magenta + "[?] Продолжить? ")
             os.system('cls')
@@ -116,7 +117,7 @@ def start():
         os.system('cls')
         funcs_print()
         start()
-        
+
     elif func == '7':
         os.system('cls')
         print("--------------Выход--------------")

@@ -25,7 +25,7 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            1.6.0
+                   ---`-'    `----'             '---'       `--`---'     `----'                            1.6.1
                                                                                     
          {blue}                                                   Functions by Ma3rX, Python_UT, Tevajs.
                                                                 With you after first SVC vs MARCO war!{yellow}
@@ -34,7 +34,8 @@ def funcs_print():
         [3] Генератор паролей
         [4] Проверка паролем
         [5] Деанон клуба
-        [6] Выход
+        [6] Сообщение от автора
+        [7] Выход
         
     """
 
@@ -107,8 +108,16 @@ def start():
         funcs_print()
         start()
 
-
     elif func == '6':
+        os.system('cls')
+        print("Я ДАУН!!!")
+        print(green + "[+] Готово.")
+        input(magenta + "[?] Продолжить? ")
+        os.system('cls')
+        funcs_print()
+        start()
+        
+    elif func == '7':
         os.system('cls')
         print("--------------Выход--------------")
         exit()

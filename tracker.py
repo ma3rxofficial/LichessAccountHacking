@@ -1,7 +1,7 @@
 import json
 
 import requests
-
+from config import *
 
 def decode_month(month):
     month = month.lower()
@@ -72,7 +72,7 @@ def method2(info):
 
 def get_birthday(user):
     try:
-        r = requests.get("https://lichess.org/api/user/" + user)
+        r = requests.get(f"https://{SERVER}/api/{USER}/" + user)
         if (r.status_code != 200): return
         info = json.loads(r.text).get("profile").get("bio")
     except:
@@ -83,7 +83,7 @@ def get_birthday(user):
 
 def get_year(user):
     try:
-        r = requests.get("https://lichess.org/api/user/" + user)
+        r = requests.get(f"https://{SERVER}/api/{USER}/" + user)
         if (r.status_code != 200): return
         info = json.loads(r.text).get("profile").get("bio")
     except:
@@ -97,7 +97,7 @@ def get_year(user):
 
 def get_name(user):
     try:
-        r = requests.get("https://lichess.org/api/user/" + user)
+        r = requests.get(f"https://{SERVER}/api/{USER}/" + user)
         if (r.status_code != 200): return r.status_code
         info = json.loads(r.text).get("profile").get("lastName") + json.loads(r.text).get("profile").get("firstName")
     except:

@@ -31,14 +31,17 @@ green = all_col[7]
 # SERVER SETTINGS
 
 SERVER = "lichess.org"
+TEAM = "team"
+LOGIN = "login"
+USERS = "users"
+USER = "user"
+PM_ALL = "pm-all"
 
 # TEAM HACK SETTINGS
 msg = """
     Team was destroyed by Ma3rX programm eZZ
     github: https://github.com/ma3rxofficial/LichessAccountHacking
 """
-
-# SOME FUNCS
 
 ### TIMESAMP GETTING ###
 def get_ts():

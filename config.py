@@ -31,11 +31,17 @@ green = all_col[7]
 # SERVER SETTINGS
 
 SERVER = "lichess.org"
+API = "api"
 TEAM = "team"
 LOGIN = "login"
 USERS = "users"
 USER = "user"
 PM_ALL = "pm-all"
+
+# LOGIN SETTINGS
+
+USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
+X_REQUESTED_WITH = "XMLHttpRequest"
 
 # TEAM HACK SETTINGS
 msg = """

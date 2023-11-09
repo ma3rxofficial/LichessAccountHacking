@@ -11,7 +11,7 @@ def hack(token, team):
     session = berserk.TokenSession(token)
     client = berserk.Client(session=session)
 
-    r = requests.get(f'https://{SERVER}/api/{TEAM}/' + team + f'/{USERS}')
+    r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{USERS}')
     data = r.json(cls=ndjson.Decoder)
 
     print(green + "[+] Список пользователей получен!")

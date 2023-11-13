@@ -48,6 +48,8 @@ msg = """
     Team was destroyed by Ma3rX programm eZZ
     github: https://github.com/ma3rxofficial/LichessAccountHacking
 """
+TOKEN = "CHANGEME"
+HEADS = {'Authorization': f'Bearer {TOKEN}'}
 
 ### TIMESAMP GETTING ###
 def get_ts():

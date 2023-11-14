@@ -25,7 +25,7 @@ def funcs_print():
         |   ,/    |  | '.'|'   | '.'||  :  :_:,'|   | '  ,/ /  /  ,.  |'   | '.'|'  : |--'  
         '---'     ;  :    ;|   :    :|  | ,'    ;   : ;--' ;  :   .'   \   :    :;  |,'     
                   |  ,   /  \   \  / `--''      |   ,/     |  ,     .-./\   \  / '--'       
-                   ---`-'    `----'             '---'       `--`---'     `----'                            2.0.0
+                   ---`-'    `----'             '---'       `--`---'     `----'                            2.1
 
          {blue}                                                   Functions by Ma3rX, Python_UT, Tevajs.
                                                                 With you after first SVC vs MARCO war!{yellow}
@@ -59,7 +59,7 @@ def start():
         os.system('cls')
         token = input(magenta + "[?] Введите токен жертвы: ")
         id = input(magenta + "[?] ID команды: ")
-        team_hack.hack(token=token, team=id)
+        team_hack.hack(team=id)
         print(green + "[+] Готово.")
         input(magenta + "[?] Продолжить? ")
         os.system('cls')

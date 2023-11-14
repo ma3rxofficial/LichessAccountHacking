@@ -21,7 +21,7 @@ def start(password, team):
     for user in users:
 
         #   Получаем ник участника
-        username = user["username"]
+        username = user[f"{JSON_USERNAME}"]
 
         if (len(username) < 4): continue # проверка на работоспособность имени пользователя, имя пользователя на личесе минимум из 4-х символов
 
@@ -39,7 +39,7 @@ def start(password, team):
 
         time.sleep(5)
         if k % 10 == 0:
-            time.sleep(20)  # ждем потому что таймаут после каждого 10 подбора
+            time.sleep(PASSWORDCHECK_TIMEOUT)  # ждем потому что таймаут после каждого 10 подбора
 
 
 if __name__ == "__main__":

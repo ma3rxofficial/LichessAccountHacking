@@ -2,8 +2,6 @@
 # Orgiginal github: https://github.com/Tevajs/LichAccInfoChecker/blob/main/Checkergitvar.py
 
 import json
-import time
-from datetime import datetime
 
 import requests
 from config import *
@@ -16,9 +14,12 @@ def parser(lichess):
 
     if response.status_code == 200:  # Проверяем успешный ответ от сервера
         user_data = response.json()
-        rating_blitz = user_data.get("perfs", {}).get("blitz", {}).get("rating")
-        rating_rapid = user_data.get("perfs", {}).get("rapid", {}).get("rating")
-        rating_bullet = user_data.get("perfs", {}).get("bullet", {}).get("rating")
+        rating_ultrabullet = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_ULTRABULLET}", {}).get(f"{JSON_RATING}")
+        rating_bullet = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_BULLET}", {}).get(f"{JSON_RATING}")
+        rating_blitz = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_BLITZ}", {}).get(f"{JSON_RATING}")
+        rating_rapid = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_RAPID}", {}).get(f"{JSON_RATING}")
+        rating_classic = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_CLASSIC}", {}).get(f"{JSON_RATING}")
+        rating_correspondence = user_data.get(f"{JSON_PERFS}", {}).get(f"{JSON_CORRESPONDENCE}", {}).get(f"{JSON_RATING}")
 
         if rating_blitz is not None:
             rating_blitz = int(rating_blitz)
@@ -29,23 +30,26 @@ def parser(lichess):
         if rating_bullet is not None:
             rating_bullet = int(rating_bullet)
 
-        register_date_timestamp = user_data.get("createdAt")
+        register_date_timestamp = user_data.get(f"{JSON_CREATEDAT}")
 
         if register_date_timestamp:
             register_date = datetime.fromtimestamp(register_date_timestamp / 1000).strftime("%d/%m/%Y")
         else:
             register_date = "Дата регистрации не доступна"
 
-        total_games = user_data.get("count", {}).get("all")
+        total_games = user_data.get(f"{JSON_COUNT}", {}).get("all")
 
+        print("Рейтинг (Ultrabullet):", rating_ultrabullet)
+        print("Рейтинг (Bullet):", rating_bullet)
         print("Рейтинг (Blitz):", rating_blitz)
         print("Рейтинг (Rapid):", rating_rapid)
-        print("Рейтинг (Bullet):", rating_bullet)
+        print("Рейтинг (Classic):", rating_classic)
+        print("Рейтинг (Correspondence):", rating_correspondence)
         print("Дата регистрации:", register_date)
         print("Количество партий:", total_games)
 
         # Проверяем наличие титула у аккаунта
-        title = user_data.get("title")
+        title = user_data.get(f"{JSON_TITLE}")
 
         if title:
             print("Титул:", title)
@@ -54,7 +58,7 @@ def parser(lichess):
 
         # Проверяем наличие био у аккаунта
         try:
-            print("Био:", json.loads(response.text).get("profile").get("bio"))
+            print("Био:", json.loads(response.text).get(f"{JSON_PROFILE}").get(f"{JSON_BIO}"))
         except:
             print("Био неизвестно")
 

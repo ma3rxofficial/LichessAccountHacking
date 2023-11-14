@@ -5,7 +5,7 @@ from parser import *
 
 
 def deanon_default(team):
-    r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + '/users')
+    r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{USERS}')
     data = r.json(cls=ndjson.Decoder)
 
     print(green + "[+] Список пользователей получен!")
@@ -23,7 +23,7 @@ def deanon_multipart(team_list):
         print(team_list.split())
         for team in team_list.split():
             print(team)
-            r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + '/users')
+            r = requests.get(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{USERS}')
             data = r.json(cls=ndjson.Decoder)
 
             print(green + f"[+] Список пользователей получен!")

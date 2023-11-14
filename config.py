@@ -38,6 +38,24 @@ USERS = "users"
 USER = "user"
 PM_ALL = "pm-all"
 
+# JSON GETTING SETTINGS
+JSON_PROFILE = "profile"
+JSON_BIO = "bio"
+JSON_FIRSTNAME = "firstName"
+JSON_LASTNAME = "lastName"
+JSON_PERFS = "perfs"
+JSON_RATING = "rating"
+JSON_ULTRABULLET = "ultrabullet"
+JSON_BULLET = "bullet"
+JSON_BLITZ = "blitz"
+JSON_RAPID = "rapid"
+JSON_CLASSIC = "classic"
+JSON_CORRESPONDENCE = "correspondence"
+JSON_CREATEDAT = "createdAt"
+JSON_COUNT = "count"
+JSON_TITLE = "title"
+
+
 # LOGIN SETTINGS
 
 USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"

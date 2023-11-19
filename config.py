@@ -55,6 +55,11 @@ JSON_CORRESPONDENCE = "correspondence"
 JSON_CREATEDAT = "createdAt"
 JSON_COUNT = "count"
 JSON_TITLE = "title"
+JSON_REMEMBER = "true"
+
+# PATHS
+CHECKING_PATH = "hacked_checking"
+HACKEDREAL_PATH = "hacked_real"
 
 # TIMEOUT FOR BRUTEFORCE SETTINGS
 PASSWORDCHECK_TIMEOUT = 20

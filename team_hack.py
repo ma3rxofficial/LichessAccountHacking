@@ -18,7 +18,7 @@ def hack(team):
     print("[+] Рассылка успешна отправлена!")
 
     for i in data:
-        user = i['username']
+        user = i[f'{JSON_USERNAME}']
         client.teams.kick_member(team, user)
         print(f"[+] {user} кикнут!")
 

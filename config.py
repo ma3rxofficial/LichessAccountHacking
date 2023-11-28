@@ -1,5 +1,6 @@
 import random
 import time
+import platform
 from datetime import datetime
 
 from colorama import Fore, Style
@@ -28,6 +29,40 @@ magenta = all_col[5]
 yellow = all_col[6]
 green = all_col[7]
 
+# MENU
+MENU = blue + f"""
+        {yellow}
+
+                ██╗     ██╗██╗  ██╗ █████╗  ██████╗██╗  ██╗
+                ██║     ██║██║  ██║██╔══██╗██╔════╝██║ ██╔╝
+                ██║     ██║███████║███████║██║     █████╔╝ 
+                ██║     ██║██╔══██║██╔══██║██║     ██╔═██╗ 
+                ███████╗██║██║  ██║██║  ██║╚██████╗██║  ██╗
+                ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+
+                                                          {yellow}[Разработчик: {green}Ma3rX{yellow}]
+                                                          {yellow}[Версия: {green}2.1.4{yellow}]
+                                                          {yellow}Ваша система - [{green}{platform.system()}{yellow}]
+
+      __________________________________________________________________________________________
+      |                                                                                        |
+      | [{green}Discord{yellow}] - @Ma3rX                                                                     |
+      |                                                                                        |
+      | [{green}YouTube{yellow}] - https://www.youtube.com/channel/UC-c6q0jLeUd6XrtfCvzQotQ                   |
+      |________________________________________________________________________________________|
+
+    """
+
+MENU_FUNCS = f"""
+        [{green}1{yellow}] Хак аккаунтов(мултипарт)
+        [{green}2{yellow}] Кик участников из команды
+        [{green}3{yellow}] Генератор паролей
+        [{green}4{yellow}] Проверка паролем
+        [{green}5{yellow}] Деанон клуба
+        [{green}6{yellow}] Сообщение от автора
+        [{red}0{yellow}] Выход
+"""
+
 # SERVER SETTINGS
 
 SERVER = "lichess.org"
@@ -55,7 +90,7 @@ JSON_CORRESPONDENCE = "correspondence"
 JSON_CREATEDAT = "createdAt"
 JSON_COUNT = "count"
 JSON_TITLE = "title"
-JSON_REMEMBER = "true"
+
 
 # PATHS
 CHECKING_PATH = "hacked_checking"
@@ -68,6 +103,7 @@ HACKMULTIPART_TIMEOUT = 20
 # LOGIN SETTINGS
 USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
 X_REQUESTED_WITH = "XMLHttpRequest"
+REMEMBER = "true"
 
 # TEAM HACK SETTINGS
 msg = """

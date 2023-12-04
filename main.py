@@ -10,7 +10,7 @@ from config import *
 def start():
     print(MENU)
     print(MENU_FUNCS) # вывод меню
-    func = input(magenta + '[?] Выберите функцию: ')
+    func = input(yellow + f'[{green}?{yellow}] Выберите функцию: ')
 
     if func == '1':
         os.system('cls')

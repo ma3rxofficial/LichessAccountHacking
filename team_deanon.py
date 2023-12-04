@@ -9,6 +9,8 @@ def deanon_default(team):
     data = r.json(cls=ndjson.Decoder)
 
     print(green + "[+] Список пользователей получен!")
+    if DEANON_SAVING:
+        print(yellow + f"[{red}!{yellow}]В конфиге было включено сохранение информации")
 
     for member in data:
         print(cyan + f"""
@@ -17,6 +19,7 @@ def deanon_default(team):
 ------------------------------------------------------------
         """)
         parser(member["username"])
+
     print("------------------------------------------------------------")
 
 def deanon_multipart(team_list):
@@ -50,10 +53,10 @@ def start():
         deanon_default(team=input(magenta + "[?] ID команды: "))
 
     elif answer == "multipart":
-        deanon_multipart(team_list=input(magenta + "Введите файл с список клубов(через пробел): "))
+        deanon_multipart(team_list=input(magenta + "Введите список клубов(через пробел): "))
 
     elif answer == "MULTIPART":
-        deanon_multipart(team_list=input(magenta + "Введите файл с список клубов(через пробел): "))
+        deanon_multipart(team_list=input(magenta + "Введите список клубов(через пробел): "))
 
 if __name__ == "__main__":
     start()

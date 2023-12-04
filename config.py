@@ -41,7 +41,7 @@ MENU = blue + f"""
                 ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 
                                                           {yellow}[Разработчик: {green}Ma3rX{yellow}]
-                                                          {yellow}[Версия: {green}2.1.4{yellow}]
+                                                          {yellow}[Версия: {green}2.1.5{yellow}]
                                                           {yellow}Ваша система - [{green}{platform.system()}{yellow}]
 
       __________________________________________________________________________________________
@@ -95,6 +95,7 @@ JSON_TITLE = "title"
 # PATHS
 CHECKING_PATH = "hacked_checking"
 HACKEDREAL_PATH = "hacked_real"
+DEANON_PATH = "deanon_saves"
 
 # TIMEOUT FOR BRUTEFORCE SETTINGS
 PASSWORDCHECK_TIMEOUT = 20
@@ -117,6 +118,9 @@ HEADS = {'Authorization': f'Bearer {TOKEN}'}
 OK_RESPONSE = 200
 ERROR_RESPONSE = 401
 BLOCKED_RESPONSE = 429
+
+# DEANON SETTINGS
+DEANON_SAVING = True
 
 ### TIMESAMP GETTING ###
 def get_ts():

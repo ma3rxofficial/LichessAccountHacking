@@ -74,7 +74,7 @@ def get_birthday(user):
     try:
         r = requests.get(f"https://{SERVER}/{API}/{USER}/" + user)
         if (r.status_code != 200): return
-        info = json.loads(r.text).get("profile").get("bio")
+        info = json.loads(r.text).get(f"{JSON_PROFILE}").get(f"{JSON_BIO}")
     except:
         return
     if (not info): return
@@ -85,7 +85,7 @@ def get_year(user):
     try:
         r = requests.get(f"https://{SERVER}/{API}/{USER}/" + user)
         if (r.status_code != 200): return
-        info = json.loads(r.text).get("profile").get("bio")
+        info = json.loads(r.text).get(f"{JSON_PROFILE}").get(f"{JSON_BIO}")
     except:
         return
     if (not info): return
@@ -99,7 +99,7 @@ def get_name(user):
     try:
         r = requests.get(f"https://{SERVER}/{API}/{USER}/" + user)
         if (r.status_code != 200): return r.status_code
-        info = json.loads(r.text).get("profile").get("lastName") + json.loads(r.text).get("profile").get("firstName")
+        info = json.loads(r.text).get(f"{JSON_PROFILE}").get(f"{JSON_BIO}") + json.loads(r.text).get(f"{JSON_PROFILE}").get(f"{JSON_FIRSTNAME}")
     except:
         return
     return info

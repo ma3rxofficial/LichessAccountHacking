@@ -41,7 +41,7 @@ MENU = blue + f"""
                 ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 
                                                           {yellow}[Разработчик: {green}Ma3rX{yellow}]
-                                                          {yellow}[Версия: {green}2.1.5{yellow}]
+                                                          {yellow}[Версия: {green}2.1.6{yellow}]
                                                           {yellow}Ваша система - [{green}{platform.system()}{yellow}]
 
       __________________________________________________________________________________________
@@ -121,6 +121,13 @@ BLOCKED_RESPONSE = 429
 
 # DEANON SETTINGS
 DEANON_SAVING = True
+
+# PASSWORDS PATHS
+PASSWORDS_DICT_PATH = "./passwords.txt"
+PASSWORDS_POPULAR_PATH = "./mb_passwords.txt"
+
+# GENERATOR PASSWORDS SETTINGS
+GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 
 ### TIMESAMP GETTING ###
 def get_ts():

@@ -78,7 +78,8 @@ def start():
     elif func == '6':
         os.system('cls')
         print(MENU)
-        print("Я ДАУН!!!")
+        ran_now = random.choice(all_col) # random color but now eshckere:::
+        print(ran_now + "это просто тест функция хер пойми зачем")
         print(green + "[+] Готово.")
         input(magenta + "[?] Продолжить? ")
         os.system('cls')

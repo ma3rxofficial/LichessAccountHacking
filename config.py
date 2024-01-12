@@ -13,6 +13,7 @@ all_col = [Style.BRIGHT + Fore.RED,
            Style.BRIGHT + Fore.LIGHTMAGENTA_EX,
            Style.BRIGHT + Fore.LIGHTYELLOW_EX,
            Style.BRIGHT + Fore.LIGHTGREEN_EX,
+           Style.BRIGHT + Fore.WHITE,
 
            ] # list of colors
 
@@ -28,8 +29,10 @@ cyanlight2 = all_col[4]
 magenta = all_col[5]
 yellow = all_col[6]
 green = all_col[7]
+white = all_col[8]
 
 # MENU
+VERSION = "2.2.0"
 MENU = blue + f"""
         {yellow}
 
@@ -41,7 +44,7 @@ MENU = blue + f"""
                 ╚══════╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
 
                                                           {yellow}[Разработчик: {green}Ma3rX{yellow}]
-                                                          {yellow}[Версия: {green}2.1.6{yellow}]
+                                                          {yellow}[Версия: {green}{VERSION}{yellow}]
                                                           {yellow}Ваша система - [{green}{platform.system()}{yellow}]
 
       __________________________________________________________________________________________
@@ -127,7 +130,12 @@ PASSWORDS_DICT_PATH = "./passwords.txt"
 PASSWORDS_POPULAR_PATH = "./mb_passwords.txt"
 
 # GENERATOR PASSWORDS SETTINGS
-GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890'
+
+"""
+    К сожалению, дорогие защитники СВЧ, сюда можно добавить любые символы, так что ваши способы защиты немножко не будут работать ))
+    Слава НБ!
+"""
 
 ### TIMESAMP GETTING ###
 def get_ts():

@@ -30,7 +30,14 @@ def start(password, team):
                           headers={"X-Requested-With": X_REQUESTED_WITH,
                                    "User-Agent": USER_AGENT}) # пытатаемся войти в акк
 
-        print(cyan + f"{get_ts()} {r}, {username}: {password}")
+        if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
+            print(green + f"{get_ts()} {r}, {username}: {password}")
+
+        elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
+            print(white + f"{get_ts()} {r}, {username}: {password}")
+
+        elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
+            print(red + f"{get_ts()} {r}, {username}: {password}")
         k += 1
 
         if str(r) == f"<Response [{OK_RESPONSE}]>":

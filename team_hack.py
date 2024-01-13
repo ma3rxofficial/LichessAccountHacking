@@ -24,4 +24,4 @@ def hack(team):
 
 
 if __name__ == "__main__":
-    hack(team=input(magenta + "[?] ID команды: "))
+    hack(team=input(magenta + "[?] ID команды: " + white))

@@ -12,4 +12,4 @@ def start(number, length):
             passwords.write(f"{password} \n")
 
 if __name__ == "__main__":
-    start(number=input(magenta + "[?] Количество паролей: "), length=input(magenta + "[?] Длина пароля: "))
+    start(number=input(magenta + "[?] Количество паролей: " + white), length=input(magenta + "[?] Длина пароля: " + white))

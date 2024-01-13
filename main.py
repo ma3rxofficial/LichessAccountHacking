@@ -1,4 +1,5 @@
 import os
+from rich.traceback import install
 
 import hack_multipart_account
 import password_check
@@ -7,29 +8,33 @@ import team_hack
 import wordlist
 from config import *
 
+
+install(show_locals=True) # инициализация вывода ошибок с помощью рича
+os.system("title LiHack by Ma3rX") # ставим название окна терминала
+
 def start():
     print(MENU)
     print(MENU_FUNCS) # вывод меню
-    func = input(yellow + f'[{green}?{yellow}] Выберите функцию: ')
+    func = input(yellow + f'[{green}?{yellow}] Выберите функцию: ' + white)
 
     if func == '1':
         os.system('cls')
         print(MENU)
         with open("passwords.txt", "r") as passwords:
-            hack_multipart_account.start(list(passwords.read()))
+            hack_multipart_account.start(passwords.readlines())
         print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? ")
+        input(magenta + "[?] Продолжить? " + white)
         os.system('cls')
         start()
 
     elif func == '2':
         os.system('cls')
         print(MENU)
-        token = input(magenta + "[?] Введите токен жертвы: ")
-        id = input(magenta + "[?] ID команды: ")
+        token = input(magenta + "[?] Введите токен жертвы: " + white)
+        id = input(magenta + "[?] ID команды: " + white)
         team_hack.hack(team=id)
         print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? ")
+        input(magenta + "[?] Продолжить? " + white)
         os.system('cls')
         start()
 
@@ -40,10 +45,10 @@ def start():
         choose_4 = input(
             magenta + "Генерация паролей может вызвать теоретическое снижение производительности вашего компьютера. Хотите продолжить? [y/N]")
         if choose_4 == "y" or choose_4 == "Y":
-            wordlist.start(number=input(magenta + "[?] Количество паролей: "),
-                           length=input(magenta + "[?] Длина пароля: "))
+            wordlist.start(number=input(magenta + "[?] Количество паролей: " + white),
+                           length=input(magenta + "[?] Длина пароля: " + white))
             print(green + "[+] Готово.")
-            input(magenta + "[?] Продолжить? ")
+            input(magenta + "[?] Продолжить? " + white)
             os.system('cls')
             start()
 
@@ -60,7 +65,7 @@ def start():
                              team=input(yellow + "Введите ID клуба: " + magenta))
 
         print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? ")
+        input(magenta + "[?] Продолжить? " + white)
         os.system('cls')
         start()
 
@@ -71,7 +76,7 @@ def start():
         team_deanon.start()
 
         print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? ")
+        input(magenta + "[?] Продолжить? " + white)
         os.system('cls')
         start()
 
@@ -81,13 +86,14 @@ def start():
         ran_now = random.choice(all_col) # random color but now eshckere:::
         print(ran_now + "это просто тест функция хер пойми зачем")
         print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? ")
+        input(magenta + "[?] Продолжить? " + white)
         os.system('cls')
         start()
 
     elif func == '0':
         os.system('cls')
         print(MENU)
+        print(white)
         exit()
 
 

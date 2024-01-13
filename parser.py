@@ -39,14 +39,14 @@ def parser(lichess):
 
         total_games = user_data.get(f"{JSON_COUNT}", {}).get("all")
 
-        print(cyan + "Рейтинг (Ultrabullet):", rating_ultrabullet)
-        print(cyan + "Рейтинг (Bullet):", rating_bullet)
-        print(cyan + "Рейтинг (Blitz):", rating_blitz)
-        print(cyan + "Рейтинг (Rapid):", rating_rapid)
-        print(cyan + "Рейтинг (Classic):", rating_classic)
-        print(cyan + "Рейтинг (Correspondence):", rating_correspondence)
-        print(cyan + "Дата регистрации:", register_date)
-        print(cyan + "Количество партий:", total_games)
+        print(cyan + "Рейтинг (Ultrabullet):" + green, rating_ultrabullet)
+        print(cyan + "Рейтинг (Bullet):" + green, rating_bullet)
+        print(cyan + "Рейтинг (Blitz):" + green, rating_blitz)
+        print(cyan + "Рейтинг (Rapid):" + green, rating_rapid)
+        print(cyan + "Рейтинг (Classic):" + green, rating_classic)
+        print(cyan + "Рейтинг (Correspondence):" + green, rating_correspondence)
+        print(cyan + "Дата регистрации:" + green, register_date)
+        print(cyan + "Количество партий:" + green, total_games)
 
         # Проверяем наличие титула у аккаунта
         title = user_data.get(f"{JSON_TITLE}")
@@ -54,7 +54,7 @@ def parser(lichess):
         if title:
             print("Титул:", title)
         else:
-            print("У аккаунта нет титула")
+            print(red + "[ERR] У аккаунта нет титула")
 
         # Проверяем наличие био у аккаунта
         try:
@@ -65,6 +65,7 @@ def parser(lichess):
                 print(green + "Био:", json.loads(response.text).get(f"{JSON_PROFILE}").get(f"{JSON_BIO}")) # если био есть
         except: # если нет био
             print(red + "[ERR] Био неизвестно")
+
 
     else:
         print(red + "[ERR] Не удалось получить информацию об аккаунте")

@@ -5,15 +5,15 @@ from datetime import datetime
 
 from colorama import Fore, Style
 
-all_col = [Style.BRIGHT + Fore.RED,
-           Style.BRIGHT + Fore.CYAN,
-           Style.BRIGHT + Fore.LIGHTCYAN_EX,
-           Style.BRIGHT + Fore.LIGHTBLUE_EX,
-           Style.BRIGHT + Fore.LIGHTCYAN_EX,
-           Style.BRIGHT + Fore.LIGHTMAGENTA_EX,
-           Style.BRIGHT + Fore.LIGHTYELLOW_EX,
-           Style.BRIGHT + Fore.LIGHTGREEN_EX,
-           Style.BRIGHT + Fore.WHITE,
+all_col = [Fore.RED,
+           Fore.CYAN,
+           Fore.LIGHTCYAN_EX,
+           Fore.BLUE,
+           Fore.LIGHTCYAN_EX,
+           Fore.LIGHTMAGENTA_EX,
+           Fore.YELLOW,
+           Fore.GREEN,
+           Fore.WHITE,
 
            ] # list of colors
 
@@ -32,7 +32,7 @@ green = all_col[7]
 white = all_col[8]
 
 # MENU
-VERSION = "2.2.0"
+VERSION = "2.2.1"
 MENU = blue + f"""
         {yellow}
 
@@ -103,6 +103,8 @@ DEANON_PATH = "deanon_saves"
 # TIMEOUT FOR BRUTEFORCE SETTINGS
 PASSWORDCHECK_TIMEOUT = 20
 HACKMULTIPART_TIMEOUT = 20
+SAVE_EVERYTHING_MULTIPART = True
+SAVE_EVERYTHING_CHECK = True
 
 # LOGIN SETTINGS
 USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
@@ -121,9 +123,6 @@ HEADS = {'Authorization': f'Bearer {TOKEN}'}
 OK_RESPONSE = 200
 ERROR_RESPONSE = 401
 BLOCKED_RESPONSE = 429
-
-# DEANON SETTINGS
-DEANON_SAVING = True
 
 # PASSWORDS PATHS
 PASSWORDS_DICT_PATH = "./passwords.txt"

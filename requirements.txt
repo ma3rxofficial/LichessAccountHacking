@@ -4,3 +4,4 @@ berserk>=0.10.0
 ndjson>=0.3.1
 feedparser>=6.0.10
 twisted>=23.8.0
+rich>=13.7.0

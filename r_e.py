@@ -78,3 +78,17 @@ def translit(string):
             string2 = string2 + i
 
     return string2
+
+MARKDOWN = """
+# This is an h1
+
+- huy
+- chlen
+- pizda
+"""
+from rich.console import Console
+from rich.markdown import Markdown
+
+console = Console()
+md = Markdown(MARKDOWN)
+console.print(md)

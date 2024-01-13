@@ -1,5 +1,7 @@
 import os
 from rich.traceback import install
+from rich.console import Console
+from rich.markdown import Markdown
 
 import hack_multipart_account
 import password_check
@@ -8,6 +10,7 @@ import team_hack
 import wordlist
 from config import *
 
+console = Console()
 
 install(show_locals=True) # инициализация вывода ошибок с помощью рича
 os.system("title LiHack by Ma3rX") # ставим название окна терминала
@@ -61,8 +64,8 @@ def start():
         os.system('cls')
         print(MENU)
         print(cyanlight + "Проверка участников по паролю")
-        password_check.start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + magenta),
-                             team=input(yellow + "Введите ID клуба: " + magenta))
+        password_check.start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + white),
+                             team=input(yellow + "Введите ID клуба: " + white))
 
         print(green + "[+] Готово.")
         input(magenta + "[?] Продолжить? " + white)
@@ -83,8 +86,9 @@ def start():
     elif func == '6':
         os.system('cls')
         print(MENU)
-        ran_now = random.choice(all_col) # random color but now eshckere:::
-        print(ran_now + "это просто тест функция хер пойми зачем")
+        print(white)
+        md = Markdown(AUTHOR_MSG)
+        console.print(md)
         print(green + "[+] Готово.")
         input(magenta + "[?] Продолжить? " + white)
         os.system('cls')

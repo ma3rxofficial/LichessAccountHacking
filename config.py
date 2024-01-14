@@ -1,41 +1,41 @@
-import random
-import time
-import platform
-from datetime import datetime
-from rich.console import Console
-from rich.markdown import Markdown
+import random # рандомизатор
+import time # время
+import platform # платформа(для определения системы пользователя)
+from datetime import datetime # вторая импорта времени))
+from rich.console import Console # консоль ричовская
+from rich.markdown import Markdown # система rich-markdown
 
-from colorama import Fore, Style
+from colorama import Fore # цветной текст
 
-all_col = [Fore.RED,
-           Fore.CYAN,
-           Fore.LIGHTCYAN_EX,
-           Fore.BLUE,
-           Fore.LIGHTCYAN_EX,
-           Fore.LIGHTMAGENTA_EX,
-           Fore.YELLOW,
-           Fore.GREEN,
-           Fore.WHITE,
+all_col = [Fore.RED,                # красный
+           Fore.CYAN,               # голубой
+           Fore.LIGHTCYAN_EX,       # светло-голубой
+           Fore.BLUE,               # синий
+           Fore.LIGHTCYAN_EX,       # светло-голубой 2 вариант
+           Fore.LIGHTMAGENTA_EX,    # светло-фиолетовый(малиновый)
+           Fore.YELLOW,             # желтый
+           Fore.GREEN,              # зеленый
+           Fore.WHITE,              # белый
 
-           ] # list of colors
+           ] # все цвета
 
-ran = random.choice(all_col) # random color
+ran = random.choice(all_col) # случайный цвет
 
 # COLORS
 
-red = all_col[0]
-cyan = all_col[1]
-cyanlight = all_col[2]
-blue = all_col[3]
-cyanlight2 = all_col[4]
-magenta = all_col[5]
-yellow = all_col[6]
-green = all_col[7]
-white = all_col[8]
+red = all_col[0] # красный
+cyan = all_col[1] # голубой
+cyanlight = all_col[2] # светло-голубой
+blue = all_col[3] # синий
+cyanlight2 = all_col[4] # светло-голубой 2 вариант
+magenta = all_col[5] # светло-фиолетовый(малиновый)
+yellow = all_col[6] # желтый
+green = all_col[7] # зеленый
+white = all_col[8] # белый(дефолтный)
 
 # MENU
-VERSION = "2.2.2"
-MENU = blue + f"""
+VERSION = "2.2.2" # версия
+MENU = blue + f""" 
         {yellow}
 
                 ██╗     ██╗██╗  ██╗ █████╗  ██████╗██╗  ██╗
@@ -56,7 +56,7 @@ MENU = blue + f"""
       | [{green}YouTube{yellow}] - https://www.youtube.com/channel/UC-c6q0jLeUd6XrtfCvzQotQ                   |
       |________________________________________________________________________________________|
 
-    """
+    """ # баннер меню, основной
 
 MENU_FUNCS = f"""
         [{green}1{yellow}] Хак аккаунтов(мултипарт)
@@ -66,7 +66,7 @@ MENU_FUNCS = f"""
         [{green}5{yellow}] Деанон клуба
         [{green}6{yellow}] Сообщение от автора
         [{red}0{yellow}] Выход
-"""
+""" # вывод функций
 
 AUTHOR_MSG = f"""
 # Вы скачали Li-Hack.. 
@@ -85,72 +85,72 @@ AUTHOR_MSG = f"""
 Как видите, *программа довольно функциональна*...
 
 # Спасибо, что скачали Li-Hack :)
-"""
+""" # описание проги в маркдауне
 
 # SERVER SETTINGS
+SERVER = "lichess.org" # адрес сервера
 
-SERVER = "lichess.org"
-API = "api"
-TEAM = "team"
-LOGIN = "login"
-USERS = "users"
-USER = "user"
-PM_ALL = "pm-all"
+# API SETTINGS
+API = "api"  # апи
+TEAM = "team" # тима
+LOGIN = "login" # логин
+USERS = "users" # юзеры
+USER = "user" # юзер
+PM_ALL = "pm-all" # рассылка
 
 # JSON GETTING SETTINGS
-JSON_PROFILE = "profile"
-JSON_USERNAME = "username"
-JSON_BIO = "bio"
-JSON_FIRSTNAME = "firstName"
-JSON_LASTNAME = "lastName"
-JSON_PERFS = "perfs"
-JSON_RATING = "rating"
-JSON_ULTRABULLET = "ultrabullet"
-JSON_BULLET = "bullet"
-JSON_BLITZ = "blitz"
-JSON_RAPID = "rapid"
-JSON_CLASSIC = "classic"
-JSON_CORRESPONDENCE = "correspondence"
-JSON_CREATEDAT = "createdAt"
-JSON_COUNT = "count"
-JSON_TITLE = "title"
+JSON_PROFILE = "profile" # профиль
+JSON_USERNAME = "username" # имя юзера
+JSON_BIO = "bio" # био юзера в профиле
+JSON_FIRSTNAME = "firstName" # имя
+JSON_LASTNAME = "lastName" # фамилия
+JSON_PERFS = "perfs" # инфа о рейтингах
+JSON_RATING = "rating" # рейтинг
+JSON_ULTRABULLET = "ultrabullet" # ультрапуля
+JSON_BULLET = "bullet" # пуля
+JSON_BLITZ = "blitz" # блиц
+JSON_RAPID = "rapid" # рапид
+JSON_CLASSIC = "classic" # классика
+JSON_CORRESPONDENCE = "correspondence" # игра по переписке
+JSON_CREATEDAT = "createdAt" # создано в
+JSON_COUNT = "count" # количество
+JSON_TITLE = "title" # заголовок
 
 
 # PATHS
-CHECKING_PATH = "hacked_checking"
-HACKEDREAL_PATH = "hacked_real"
-DEANON_PATH = "deanon_saves"
+CHECKING_PATH = "hacked_checking" # папка где сохраняются взломанные акки проверкой пароля
+HACKEDREAL_PATH = "hacked_real" # папка где сохраняются взломанные акки мультипартным хаком
 
 # TIMEOUT FOR BRUTEFORCE SETTINGS
-PASSWORDCHECK_TIMEOUT = 20
-HACKMULTIPART_TIMEOUT = 20
-SAVE_EVERYTHING_MULTIPART = True
-SAVE_EVERYTHING_CHECK = True
+PASSWORDCHECK_TIMEOUT = 20 # таймоаут при каждом 10м подборе в проверке пароля
+HACKMULTIPART_TIMEOUT = 20 # таймоаут при каждом 10м подборе в мультипартном хаке
+SAVE_EVERYTHING_MULTIPART = True # сохранять невзломанные аккаунты в мультипартном хаке
+SAVE_EVERYTHING_CHECK = True # сохранять невзломанные аккаунты в проверке паролем
 
 # LOGIN SETTINGS
-USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0"
-X_REQUESTED_WITH = "XMLHttpRequest"
-REMEMBER = "true"
+USER_AGENT =  "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0" # поддельная инфа(от нашего лицА)
+X_REQUESTED_WITH = "XMLHttpRequest" # X-запрос
+REMEMBER = "true" # запоминать логин
 
 # TEAM HACK SETTINGS
 msg = """
     Team was destroyed by Ma3rX programm eZZ
     github: https://github.com/ma3rxofficial/LichessAccountHacking
-"""
-TOKEN = "CHANGEME"
-HEADS = {'Authorization': f'Bearer {TOKEN}'}
+""" # сообщение рассылки при захвате клуба
+TOKEN = "CHANGEME" # токен
+HEADS = {'Authorization': f'Bearer {TOKEN}'} # html-заголовки
 
 # RESPONSE SETTINGS
-OK_RESPONSE = 200
-ERROR_RESPONSE = 401
-BLOCKED_RESPONSE = 429
+OK_RESPONSE = 200 # номер нормального запроса
+ERROR_RESPONSE = 401 # номер ошибки
+BLOCKED_RESPONSE = 429 # номер заблокированного запроса
 
 # PASSWORDS PATHS
-PASSWORDS_DICT_PATH = "./passwords.txt"
-PASSWORDS_POPULAR_PATH = "./mb_passwords.txt"
+PASSWORDS_DICT_PATH = "./passwords.txt" # путь к словарю паролей
+PASSWORDS_POPULAR_PATH = "./mb_passwords.txt" # путь к популярным паролям
 
 # GENERATOR PASSWORDS SETTINGS
-GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890'
+GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890' # символы для генератора
 
 """
     К сожалению, дорогие защитники СВЧ, сюда можно добавить любые символы, так что ваши способы защиты немножко не будут работать ))
@@ -159,12 +159,12 @@ GENERATOR_CHARS = '+-/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVW
 
 ### TIMESAMP GETTING ###
 def get_ts():
-    timestamp = time.time()
-    # convert to datetime
+    timestamp = time.time() # получение времени
+    # конвертация в нормальное время
     date_time = datetime.fromtimestamp(timestamp)
 
-    # convert timestamp to string in dd-mm-yyyy HH:MM:SS
+    # конвертация dd-mm-yyyy HH:MM:SS
 
-    str_dt = date_time.strftime("%d-%m-%Y, %H:%M:%S")
+    str_dt = date_time.strftime("%d-%m-%Y, %H:%M:%S") # конвертируем
 
-    return f"| {str_dt} |"
+    return f"| {str_dt} |" # вывод функции

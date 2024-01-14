@@ -1,105 +1,108 @@
-import os
-from rich.traceback import install
-from rich.console import Console
-from rich.markdown import Markdown
+import os # для команд по типу cls
+from rich.traceback import install # рич нужен для установки красивого трейсбека(вывода ошибки)
 
+# Импорт модулей программы
 import hack_multipart_account
 import password_check
 import team_deanon
 import team_hack
 import wordlist
-from config import *
+from config import * # импорт всего содержимого конфига
 
-console = Console()
+console = Console() # инициализация консоли rich
 
 install(show_locals=True) # инициализация вывода ошибок с помощью рича
 os.system("title LiHack by Ma3rX") # ставим название окна терминала
 
 def start():
-    print(MENU)
-    print(MENU_FUNCS) # вывод меню
-    func = input(yellow + f'[{green}?{yellow}] Выберите функцию: ' + white)
+    """
+        Основная функция: вывод меню и запуск различных
+        функций программы
+    """
+    print(MENU) # вывод меню(логотип и т.д.)
+    print(MENU_FUNCS) # вывод функций меню
+    func = input(yellow + f'[{green}?{yellow}] Выберите функцию: ' + white) # спрашиваем функцию
 
-    if func == '1':
-        os.system('cls')
-        print(MENU)
-        with open("passwords.txt", "r") as passwords:
-            hack_multipart_account.start(passwords.readlines())
-        print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? " + white)
-        os.system('cls')
-        start()
+    if func == '1': # функция 1 - мультипартный хак аккаунтов
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        with open("passwords.txt", "r") as passwords: # открываем файл со словарем паролей
+            hack_multipart_account.start(passwords.readlines()) # запускаем мультипартный хак со словарем
+        print(green + "[+] Готово.") # завершение
+        input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+        os.system('cls') # очищаем терминал
+        start() # возвращаемся к выводу меню и функций меню
 
-    elif func == '2':
-        os.system('cls')
-        print(MENU)
-        token = input(magenta + "[?] Введите токен жертвы: " + white)
-        id = input(magenta + "[?] ID команды: " + white)
-        team_hack.hack(team=id)
-        print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? " + white)
-        os.system('cls')
-        start()
+    elif func == '2': # функция 2 - ЗАХВАТ клуба(кик всех участников)
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        token = input(magenta + "[?] Введите токен жертвы: " + white) # спрашиваем токен жертвы(модера клуба)
+        id = input(magenta + "[?] ID команды: " + white) # спрашиваем ID команды т.е. https://lichess.org/team/АЙДИ-ТУТ
+        team_hack.hack(team=id) # хакаем клуб с указанным айди
+        print(green + "[+] Готово.") # завершение
+        input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+        os.system('cls') # очищаем терминал
+        start() # возвращаемся к выводу меню и функций меню
 
-    elif func == '3':
-        os.system('cls')
-        print(MENU)
-        print(cyanlight + "Генерация паролей.")
+    elif func == '3': # функция 3 - генератор паролей
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        print(cyanlight + "Генерация паролей.") # заголовок
         choose_4 = input(
-            magenta + "Генерация паролей может вызвать теоретическое снижение производительности вашего компьютера. Хотите продолжить? [y/N]")
-        if choose_4 == "y" or choose_4 == "Y":
-            wordlist.start(number=input(magenta + "[?] Количество паролей: " + white),
-                           length=input(magenta + "[?] Длина пароля: " + white))
-            print(green + "[+] Готово.")
-            input(magenta + "[?] Продолжить? " + white)
-            os.system('cls')
-            start()
+            magenta + "Генерация паролей может вызвать теоретическое снижение производительности вашего компьютера. Хотите продолжить? [y/N]") # предупреждаем о снижении производительности(незаметно при малом количестве выбранных символов и количестве паролей)
+        if choose_4 == "y" or choose_4 == "Y": # если ДА(y)
+            wordlist.start(number=input(magenta + "[?] Количество паролей: " + white), # спрашиваем кол-во паролей
+                           length=input(magenta + "[?] Длина пароля: " + white)) # спрашиваем длину паролей
+            print(green + "[+] Готово.") # завершение
+            input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+            os.system('cls') # очищаем терминал
+            start() # возвращаемся к выводу меню и функций меню
 
-        else:
-            os.system('cls')
-            start()
-
-
-    elif func == '4':
-        os.system('cls')
-        print(MENU)
-        print(cyanlight + "Проверка участников по паролю")
-        password_check.start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + white),
-                             team=input(yellow + "Введите ID клуба: " + white))
-
-        print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? " + white)
-        os.system('cls')
-        start()
-
-    elif func == '5':
-        os.system('cls')
-        print(MENU)
-        print(cyanlight + "Получение информации о всех участниках клуба")
-        team_deanon.start()
-
-        print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? " + white)
-        os.system('cls')
-        start()
-
-    elif func == '6':
-        os.system('cls')
-        print(MENU)
-        print(white)
-        md = Markdown(AUTHOR_MSG)
-        console.print(md)
-        print(green + "[+] Готово.")
-        input(magenta + "[?] Продолжить? " + white)
-        os.system('cls')
-        start()
-
-    elif func == '0':
-        os.system('cls')
-        print(MENU)
-        print(white)
-        exit()
+        else: # если ответили НЕТ
+            os.system('cls') # очищаем терминал
+            start() # возвращаемся к выводу меню и функций меню
 
 
-if __name__ == '__main__':
-    start()
+    elif func == '4': # функция 4 - проверка участников паролем
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        print(cyanlight + "Проверка участников по паролю") # заголовок
+        password_check.start(password=input(green + "Введите пароль, которым вы хотите проверить клуб: " + white), # спрашиваем пароль, которым мы хотим проверить участников клуба
+                             team=input(yellow + "Введите ID клуба: " + white)) # спрашиваем айди клуба
+
+        print(green + "[+] Готово.") # завершение
+        input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+        os.system('cls') # очищаем терминал
+        start() # возвращаемся к выводу меню и функций меню
+
+    elif func == '5': # функция 5 - получение информации о всех участниках клуба
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        print(cyanlight + "Получение информации о всех участниках клуба") # заголовок
+        team_deanon.start() # запускаем деанон(все вопросы находятся в файле функции team_deanon.py)
+
+        print(green + "[+] Готово.") # завершение
+        input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+        os.system('cls') # очищаем терминал
+        start() # возвращаемся к выводу меню и функций меню
+
+    elif func == '6': # функция 6 - сообщение от автора
+        os.system('cls') # очищаем терминал
+        print(MENU) # выводим баннер меню
+        print(white) # ставим белый ЦВЕТ текста
+        md = Markdown(AUTHOR_MSG) # инициализируем маркдаун для сообщения от автора(сообщение указано в файле config.py)
+        console.print(md) # печатаем маркдаун-сообщение
+        print(green + "[+] Готово.") # завершение
+        input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
+        os.system('cls') # очищаем терминал
+        start() # возвращаемся к выводу меню и функций меню
+
+    elif func == '0': # функция "0" - ВЫХОД
+        os.system('cls') # очищаем терминад
+        print(MENU) # выводим баннер
+        print(white) # ставим белый цвет
+        exit() # выходим из программы
+
+
+if __name__ == '__main__': # если запускают из этого файла(не импортируют именно), то...
+    start() # выводим меню и функции, в общем основная функция

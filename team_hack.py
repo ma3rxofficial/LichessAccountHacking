@@ -1,4 +1,5 @@
 import berserk # парсер для личесса
+from berserk.session import Requestor
 import ndjson # джейсон специально для лича Lichess.org
 import requests # реквесты
 
@@ -13,13 +14,12 @@ def hack(team, token):
     data = r.json(cls=ndjson.Decoder) # декодируем полученную инфу
 
     print(green + "[+] Список пользователей получен!") # печатаем об успешном получении пользователей
-
-    session.post(f'https://{SERVER}/{TEAM}/' + team + f'/{PM_ALL}', data={'message': msg}, headers=HEADS).json() # рассылка, сообщение указано в config.py
+    client.teams.message_all(team, msg)
     print("[+] Рассылка успешна отправлена!") # сообщаем об успешном отправлении рассылки
 
     for i in data: # перебор пользователей
         user = i[f'{JSON_NAME}'] # получаем имя каждого пользователя
-        r = requests.post(f'https://{SERVER}/{API}/{TEAM}/' + team + f'/{KICK}/{user}') # кикаем пользователя за пользователем
+        client.teams.kick_member(team, user) # кикаем пользователя за пользователем
         print(f"[+] {user} кикнут!") # сообщаем о кике
 
 

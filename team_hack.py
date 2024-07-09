@@ -24,4 +24,4 @@ def hack(team, token):
 
 
 if __name__ == "__main__":
-    hack(team=input(magenta + "[?] ID команды: " + white)) # первичная попытка
+    hack(team=input(magenta + "[?] ID команды: " + white), token=input(magenta + "[?] Токен жертвы: " + white)) # первичная попытка

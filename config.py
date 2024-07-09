@@ -100,7 +100,7 @@ PM_ALL = "pm-all" # рассылка
 
 # JSON GETTING SETTINGS
 JSON_PROFILE = "profile" # профиль
-JSON_USERNAME = "username" # имя юзера
+JSON_USERNAME = "id" # имя юзера
 JSON_BIO = "bio" # био юзера в профиле
 JSON_FIRSTNAME = "firstName" # имя
 JSON_LASTNAME = "lastName" # фамилия

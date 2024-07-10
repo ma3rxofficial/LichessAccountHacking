@@ -35,7 +35,7 @@ def start(password, team):
         if (len(username) < 4): continue # проверка на работоспособность имени пользователя, имя пользователя на личесе минимум из 4-х символов
 
         r = requests.post(f"https://{SERVER}/{LOGIN}",
-                          data={"username": username, "password": password, "remember": f"{str(REMEMBER)}"},
+                          data={JSON_PROXY_USERNAME: username, JSON_PROXY_PASSWORD:, "remember": f"{str(REMEMBER)}"},
                           headers={"X-Requested-With": X_REQUESTED_WITH,
                                    "User-Agent": USER_AGENT}) # пытатаемся войти в акк
 

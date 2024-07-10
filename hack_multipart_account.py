@@ -72,7 +72,7 @@ def start(passwords):
         #   Писать сразу больше двух паролей не рекомендуется
         for password in passwords:
             r = requests.post(f"https://{SERVER}/{LOGIN}",
-                              data={"username": username, "password": password.strip(), "remember": f"{str(REMEMBER)}"},
+                              data={JSON_PROXY_USERNAME: username, JSON_PROXY_PASSWORD: password.strip(), "remember": f"{str(REMEMBER)}"},
                               headers={"X-Requested-With": X_REQUESTED_WITH,
                                        "User-Agent": USER_AGENT}) # пытаемся войти в акк
             #

@@ -84,6 +84,7 @@ KICK = "kick" # кикнуть юзера
 JSON_PROFILE = "profile" # профиль
 JSON_USERNAME = "id" # исходное имя юзера
 JSON_PROXY_USERNAME = "username" # имя юзера со стороны прокси
+JSON_PROXY_PSASWORD = "password" # пароль юзера со стороны прокси
 JSON_NAME = "name" # имя юзера с поддержкой заглавных букв
 JSON_BIO = "bio" # био юзера в профиле
 JSON_FIRSTNAME = "firstName" # имя

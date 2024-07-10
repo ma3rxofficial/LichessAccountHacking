@@ -34,7 +34,7 @@ green = all_col[7] # зеленый
 white = all_col[8] # белый(дефолтный)
 
 # MENU
-VERSION = "2.2.2" # версия
+VERSION = "2.2.3" # версия
 MENU = blue + f""" 
         {yellow}
 
